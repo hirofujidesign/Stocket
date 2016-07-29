@@ -1,0 +1,75 @@
+.navbar-fixed-side{
+	height:100vh;
+	width:250px;
+}
+#chart_div{
+	height:350px;
+	width:100%;
+}
+#articleWrapper{
+	overflow: scroll;
+	height: 50vh;
+}
+.introContainer{
+	width: 50%;
+	height:50%;
+	left:20%;
+	margin-right: auto;
+	position: relative;
+	top: -100px;
+	text-align:center;
+}
+.intro{
+	display:inline-block;
+}
+.introNav{
+	height:5%;
+	width:100%;
+}
+.navSearch{
+	text-align:left;
+	padding-left:40px;
+	z-index:1000;
+	display:inline-block;
+}
+.col-lg-2{
+	z-index:1000;
+}
+
+body{
+	font-family: 'oxygen', sans-serif;
+	font-weight: 700;
+}
+#headline {
+    font-size:23px;
+	/*background-color: blue;*/
+	color:white !important;
+	background-color: #0078B9;
+}
+#headline a {
+	color:white !important;
+	text-decoration: none;
+}
+#landingSubmit {
+	text-align:center;
+	width:75%;
+	background-color: #0078B9;
+}
+#signing {
+	background-color: #0078B9 !important;
+	text-align:center;
+}
+#signing:hover {
+	color:#0078B9;
+	background-color:white !important;
+	 text-decoration: none;
+}
+#landingSubmit:hover {
+	color:#0078B9;
+	background-color:white !important;
+	 text-decoration: none;
+}
+#pagiButtons {
+	color:#0078B9;
+	background-color:white !important;
+}

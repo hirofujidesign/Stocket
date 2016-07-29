@@ -1,0 +1,98 @@
+<div class="chart">
+    <!-- your page content -->
+    <canvas id="myChart" width="740" height="200"></canvas>
+</div>
+<div id="articleWrapper">
+<div id="articles">
+  <h2>{{numberOfResults}} Article Search Results for "{{searchTerm}}"</h2>
+  <!--<h4>Results {{offsetStart}} to {{offsetEnd}}:</h4>-->
+  <ul>
+    {{#articles}}
+    
+    <div class="panel panel-info">
+      <div class="panel-heading" id="headline"><a href="{{this.web_url}}" target="blank">{{this.headline.main}}</a></div>
+      <div class="panel-body">
+        {{#if this.snippet}} <p><b>Snippet:</b> {{this.snippet}} </p> {{/if}}
+        {{#if this.source}} <p><b>Source:</b> {{this.source}}</p> {{/if}}
+        {{#if this.pub_date}} <p><b>Publication Date:</b> {{this.pub_date}}</p> {{/if}}
+        {{#if this.web_url}} <p><b>URL:</b> <a href="{{this.web_url}}" target="blank">{{this.web_url}}</a></p> {{/if}}
+      </div>
+    </div>
+    {{/articles}}
+  </ul>
+</div>
+
+<div class="text-center">
+  <ul id="pageNumbers" class="pagination"></ul>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+<!-- chart.js -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+
+
+<script type="text/javascript" charset="utf-8">
+  // create array of dates for chart x-axis
+  console.log("Stock Data Dates:");
+  var stockDates = [];
+  {{#stockData}}
+    stockDates.push('{{this.Date}}')
+  {{/stockData}}
+  console.log(stockDates);
+  stockDates.reverse();
+
+  // chart script here
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: stockDates,
+          datasets: [{
+            label: 'Open',
+            data: [{{stockPriceOpen}}],
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            borderColor: 'rgba(0, 120, 185, 1)',
+            borderWidth: 2
+          }, {
+              label: 'Close',
+              data: [{{stockPriceClose}}],
+              backgroundColor: 'rgba(0, 0, 0, 0)',
+              borderColor: 'orange',
+              borderWidth: 2
+          }, {
+              label: 'High',
+              data: [{{stockPriceHigh}}],
+              backgroundColor: 'rgba(0, 0, 0, 0)',
+              borderColor: 'green',
+              borderWidth: 2
+          }, {
+              label: 'Low',
+              data: [{{stockPriceLow}}],
+              backgroundColor: 'rgba(0, 0, 0, 0)',
+              borderColor: 'red',
+              borderWidth: 2
+          }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: false
+            }
+          }]
+        },
+        tooltips: {
+
+        }
+      }
+  });
+
+  // pagination script here
+  var numberOfPages = Math.ceil({{numberOfResults}}/10);
+  for (var i=0; i<numberOfPages; i++) {
+  $("#pageNumbers").append('<form method="post" action="/' + (i+1) + '" class="pagination"><li><input type="hidden" name="searchTerm" value={{searchTerm}}><input type="hidden" name="beginDate" value={{begin}}><input type="hidden" name="endDate" value={{end}}><input class="active btn-primary" id="pagiButtons" type="submit" value="'+(i+1)+'"></li></form>')
+  }
+</script>

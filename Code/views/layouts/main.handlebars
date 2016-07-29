@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Stocket</title>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+</head>
+
+<body>
+    <!-- <nav class="navbar navbar-light navbar-fixed-top">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+          </div>
+
+          <div id="navbar" class="container collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                  {{#unless logged_in}}
+                      <li><a href="/sign-in">Sign In</a></li>
+                      <li><a href="/sign-up">Sign Up</a></li>
+                  {{/unless}}
+                  {{#if logged_in}}
+                      {{#if username}}
+                          <li><a>Welcome, {{username}}!</a></li>
+                      {{/if}}
+                      <li><a href="/sign-out">Sign Out</a></li>
+                  {{/if}}
+              </ul>
+          </div>
+      </div>
+  </nav> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-lg-2">
+                <nav class="navbar navbar-fixed-side">
+                    <!-- normal collapsible navbar markup -->
+                    <div class="navSearch">
+                        <a href="/"><img src="assets/images/rocket-logo.png" style="padding-left:30px;"></a>
+                        {{#unless logged_in}}<br>
+                        <a href="/sign-in"><button class="btn btn-success" id="signing">Sign In</button></a>
+                        <a href="/sign-up"><button class="btn btn-success" id="signing">Sign Up</button></a> {{/unless}} {{#if logged_in}} {{#if username}}
+                        <a>Welcome, {{username}}!</a> {{/if}}
+                        <a href="/sign-out">Sign Out</a> {{/if}}
+                        <br>
+                        <br>
+                        <form action="/1" method="post" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="StockName">Company</label>
+                                <input type="text" class="form-control" id="inputCompany" placeholder="Enter Company Name" name="searchTerm" onkeyup="runAuto()"><br>
+                                <div id="hintOne"></div><br>
+                                <div id="hintTwo"></div><br>
+                                <label for="first">Start Date <span class="glyphicon glyphicon-calendar"></span></label><br>
+                                <input id="first" type="date" name="beginDate" value="" class="form-control" /><br>
+                                <label for="end" >End Date <span class="glyphicon glyphicon-calendar"></span></label><br>
+                                <input id="end" type="date" name="endDate" value="" class="form-control" />
+                            </div>
+                            <br>
+                            <button class="btn btn-success" id="landingSubmit" type="submit"><i class="glyphicon glyphicon-search"></i>&ensp;&ensp;Search</button>
+
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="col-sm-9 col-lg-10 bottom intro">
+                {{{body}}}
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./assets/js/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+    <!--
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ -->
+</body>
+
+</html>
